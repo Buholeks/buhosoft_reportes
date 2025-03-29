@@ -1,0 +1,41 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;500;600;700&display=swap');
+
+/* Estilos para el fondo gris oscuro y texto blanco */
+.header {
+    background-color: #182840; /* Color gris oscuro */
+    color: white; /* Texto blanco */
+    height: 3rem;
+}
+
+.sidebar{
+    background-color: #182840;
+}
+/* Estilos para el centro de texto */
+.footer {
+    text-align: center;
+    background-color: #182840; /* Color gris oscuro */
+    color: white; /* Texto blanco */
+    height: 2rem;
+}
+
+/* Estilos para la flexbox  el area de contenido*/
+.content-wrapper {
+    display: flex;
+}
+
+/* Estilos para el crecimiento flexible */
+.main-content {
+    flex-grow: 1;
+}
+
+/* Imagen del logo */
+.logo {
+    padding: 5px;
+    width: 140px;
+    height: auto;
+}
+
+label {
+    color: #230f3d;
+}

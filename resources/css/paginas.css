@@ -1,0 +1,70 @@
+
+form {
+    padding: 10px;
+    border: 1.5px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-control,.form-select {
+    display: inline !important;
+    border: 1.1px solid #0f0c7379;
+    padding: 1.8px;
+    border-radius: 5px;
+    transition: box-shadow 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+    /* transition: box-shadow 0.3s cubic-bezier(0.25, 0.1, 0.25, 1); */
+}
+
+.form-control:hover,.form-select:hover {
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+}
+
+.form-control:focus,.form-select:focus {
+    border-color: transparent; /* Asegura que el borde no tenga color sólido */
+    outline: none; /* Quita el contorno */
+}
+
+body a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+/* tablas */
+.divtabla{
+    overflow: auto; 
+}
+.table{
+    
+    border: 1px solid #ddd;
+    font-size: small;
+
+    td{
+        padding: .3rem;
+    }
+}
+.table thead th {
+    position: sticky;
+    top: 0;
+    background-color: rgb(70, 96, 151) ; /* Fondo para el encabezado */
+    color: aliceblue;
+    z-index: 1; /* Asegura que el encabezado esté encima de las filas de la tabla */
+}
+
+
+/* PARA DEFINIR TAMAÑO DE LAS CAJAS DE TEXTO INPUT DEL FORMULARIO */
+
+.imei{
+    width: 180px;
+}
+.marca{
+    width: 320px;
+}
+.tipoventa,.precio{
+    width: 100px;
+}
+.numero,.metodopago{
+    width: 150px;
+}
+.vendedor{
+width: 200px;
+}

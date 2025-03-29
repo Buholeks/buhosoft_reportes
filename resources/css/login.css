@@ -1,0 +1,58 @@
+body {
+    background: linear-gradient(to right, #007575, #521f9e);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#btiniciarsesion {
+    background: transparent;
+    border: none;
+    padding: 8px 60px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition-duration: 0.8s;
+}
+
+#btiniciarsesion:hover {
+    background-color: rgb(255, 255, 255);
+    border: 2px solid #4caf50;
+}
+#divpadre {
+    justify-items: center;
+    input {
+        width: 350px;
+        padding: 8px;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        transition: box-shadow 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    input:hover,#btiniciarsesion:hover {
+        box-shadow: 0 0 25px white;
+    }
+}
