@@ -11,7 +11,3 @@
     <label>Teléfono</label>
     <input type="text" name="numero_tel" class="form-control" value="{{ old('numero_tel', $sucursal->numero_tel ?? '') }}">
 </div>
-<div class="form-group">
-    <label>Prefijo Folio</label>
-    <input type="text" name="prefijo_folio_sucursal" class="form-control" value="{{ old('prefijo_folio_sucursal', $sucursal->prefijo_folio_sucursal ?? '') }}">
-</div>

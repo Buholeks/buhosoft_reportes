@@ -16,9 +16,25 @@ class ControladorListadePrecios extends Controller
         $empresaId = session('empresa_id');
     
         // Solo traemos lo que pertenece a la empresa actual
-        $listadeprecios = Listadeprecios::where('id_empresa', $empresaId)->get();
-    
+        $listadeprecios = Listadeprecios::where('id_empresa', $empresaId)
+        ->orderBy('id', 'desc')
+        ->get();
         return view('listadeprecios.index', compact('listadeprecios', 'tiposEquipos', 'tiposVentas'));
+    }
+    
+
+    public function edit($id)
+    {
+        $precio = Listadeprecios::findOrFail($id);
+
+        return response()->json([
+            'id' => $precio->id,
+            'descripcion' => $precio->descripcion,
+            'precio' => $precio->precio,
+            'precio_promocion' => $precio->precio_promocion,
+            'tipoe' => $precio->tipoe,
+            'tipove' => $precio->tipove,
+        ]);
     }
     
     public function create()
@@ -30,21 +46,6 @@ class ControladorListadePrecios extends Controller
 
         return view('listadeprecios.create', compact('registro', 'modo', 'tiposEquipos', 'tiposVentas'));
     }
-
-    public function edit($id)
-    {
-        $precio = Listadeprecios::findOrFail($id);
-
-        return response()->json([
-            'id' => $precio->id,
-            'descripcion' => $precio->descripcion,
-            'precio' => $precio->precio,
-            'precio_promocion' => $precio->precio_promocion,
-            'tipoeq' => $precio->tipoe,
-            'tipove' => $precio->tipove,
-        ]);
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -54,11 +55,18 @@ class ControladorListadePrecios extends Controller
             'precio' => 'required|numeric|min:0',
             'precio_promocion' => 'nullable|numeric|min:0',
         ]);
-
-        Listadeprecios::create($request->all());
-
+    
+        $empresaId = session('empresa_id');
+    
+        // Usamos fill() para mantener seguridad con fillable
+        $registro = new Listadeprecios();
+        $registro->fill($request->all());
+        $registro->id_empresa = $empresaId;
+        $registro->save();
+    
         return redirect()->route('listadeprecios.index')->with('success', 'Precio registrado correctamente.');
     }
+    
 
     public function update(Request $request, Listadeprecios $listadeprecio)
     {

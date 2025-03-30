@@ -108,8 +108,8 @@
                         <input type="text" class="form-control" name="descripcion" id="editar_descripcion">
                     </div>
                     <div class="mb-3">
-                        <label for="editar_tipoeq_id" class="form-label">Tipo de Producto</label>
-                        <select class="form-select" name="tipoe" id="editar_tipoeq_id">
+                        <label for="editar_tipoe_id" class="form-label">Tipo de Producto</label>
+                        <select class="form-select" name="tipoe" id="editar_tipoe_id">
                             <option value="">Seleccione una opción</option>
                             @foreach($tiposEquipos as $tipoproducto)
                             <option value="{{ $tipoproducto->id }}">{{ $tipoproducto->nombre }}</option>
@@ -161,7 +161,7 @@
                     document.getElementById('editar_preciopromocion').value = data.precio_promocion;
 
                     // Setea los valores seleccionados
-                    document.getElementById('editar_tipoeq_id').value = data.tipoeq;
+                    document.getElementById('editar_tipoe_id').value = data.tipoe;
                     document.getElementById('editar_tipove_id').value = data.tipove;
 
                     // Actualiza la acción del formulario

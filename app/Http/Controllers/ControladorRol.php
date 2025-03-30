@@ -3,27 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-
+use App\Models\Role; // tu modelo extendido
 class ControladorRol extends Controller
 {
     public function index()
     {
-        $roles = Role::all();
+        $empresaId = session('empresa_id');
+
+        $roles = Role::where('id_empresa', $empresaId)->get();
+
         return view('roles.index', compact('roles'));
     }
-
     public function create()
     {
         return view('roles.crear');
     }
 
+
+
     public function store(Request $request)
     {
-        Role::create(['name' => $request->name]);
+        $request->validate([
+            'name' => 'required|string|max:50',
+        ]);
+    
+        $empresaId = session('empresa_id');
+    
+        Role::create([
+            'name' => $request->name,
+            'guard_name' => 'web',
+            'id_empresa' => $empresaId,
+        ]);
+    
         return redirect()->route('roles.index')->with('success', 'Rol creado correctamente');
     }
+    
 
     /**
      * Método para mostrar los permisos de un rol, organizados por categoría.

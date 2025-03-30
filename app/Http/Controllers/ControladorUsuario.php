@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,31 +12,49 @@ class ControladorUsuario extends Controller
 {
     public function index()
     {
-        $usuarios = User::all();
+        $empresaId = session('empresa_id');
+
+        if (!$empresaId) {
+            return redirect()->back()->with('error', 'No hay una empresa activa en la sesión.');
+        }
+
+        $usuarios = User::where('id_empresa', $empresaId)->get();
+
         return view('usuarios.index', compact('usuarios'));
     }
+
 
     public function create()
     {
         return view('usuarios.crear');
     }
 
+
+
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
+            'password' => 'required',
         ]);
+
+        $empresaId = session('empresa_id');
+
+        if (!$empresaId) {
+            return redirect()->back()->with('error', 'No se encontró una empresa activa en la sesión.');
+        }
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'id_empresa' => $empresaId,
         ]);
 
         return redirect()->route('usuarios.index')->with('success', 'Usuario creado correctamente');
     }
+
 
     public function edit($id)
     {
@@ -64,9 +83,17 @@ class ControladorUsuario extends Controller
     public function roles($id)
     {
         $usuario = User::findOrFail($id);
-        $roles = Role::all();
+        $empresaId = session('empresa_id');
+
+        if (!$empresaId) {
+            return redirect()->back()->with('error', 'No hay empresa activa en la sesión.');
+        }
+
+        $roles = Role::where('id_empresa', $empresaId)->get();
+
         return view('usuarios.roles', compact('usuario', 'roles'));
     }
+
 
     public function asignarRoles(Request $request, $id)
     {
@@ -79,16 +106,16 @@ class ControladorUsuario extends Controller
     public function permisos($id)
     {
         $usuario = User::findOrFail($id);
-    
+
         // Agrupar permisos por la segunda palabra del nombre (usuarios, roles, permisos, etc.)
-        $permisos = Permission::all()->groupBy(function($permiso) {
-            $partes = explode(' ', $permiso->name); 
+        $permisos = Permission::all()->groupBy(function ($permiso) {
+            $partes = explode(' ', $permiso->name);
             return count($partes) > 1 ? ucfirst($partes[1]) : 'Otros'; // Toma la segunda palabra
         });
-    
+
         return view('usuarios.permisos', compact('usuario', 'permisos'));
     }
-    
+
 
     public function asignarPermisos(Request $request, $id)
     {

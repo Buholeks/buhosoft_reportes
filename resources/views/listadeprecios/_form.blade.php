@@ -16,12 +16,12 @@
         </div>
 
         <div class="mb-3">
-            <label for="tipoeq">Tipo de Producto</label>
-            <select name="tipoeq" id="tipoeq" class="form-select">
+            <label for="tipoe">Tipo de Producto</label>
+            <select name="tipoe" id="tipoe" class="form-select">
                 <option value="">Seleccione una opción</option>
                 @foreach($tiposEquipos as $tipoproducto)
                     <option value="{{ $tipoproducto->id }}"
-                        {{ old('tipoeq') == $tipoproducto->id ? 'selected' : '' }}>
+                        {{ old('tipoe') == $tipoproducto->id ? 'selected' : '' }}>
                         {{ $tipoproducto->nombre }}
                     </option>
                 @endforeach

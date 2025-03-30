@@ -78,8 +78,8 @@ class ControladorEquipos extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        $fiveDaysAgo = Carbon::now()->subDays(5);
 
+        $fiveDaysAgo = Carbon::now()->subDays(5);
         $precios = ListadePrecios::where('id_empresa', $empresaId)
             ->where('updated_at', '>', $fiveDaysAgo)
             ->orderBy('updated_at', 'desc')
