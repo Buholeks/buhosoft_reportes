@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Listadeprecios;
 use App\Models\Tipoproducto;
-use App\Models\MetodoPago;
+use App\Models\Metodopago;
 
 class ControladorListadePrecios extends Controller
 {
