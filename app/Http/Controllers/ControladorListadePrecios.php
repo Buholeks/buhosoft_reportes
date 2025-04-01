@@ -16,7 +16,7 @@ class ControladorListadePrecios extends Controller
         $empresaId = session('empresa_id');
     
         // Solo traemos lo que pertenece a la empresa actual
-        $listadeprecios = Listadeprecios::where('id_empresa', $empresaId)
+        $listadeprecios = ListadePrecios::where('id_empresa', $empresaId)
         ->orderBy('id', 'desc')
         ->get();
         return view('listadeprecios.index', compact('listadeprecios', 'tiposEquipos', 'tiposVentas'));
