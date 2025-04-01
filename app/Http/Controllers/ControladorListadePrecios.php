@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Listadeprecios;
+use App\Models\ListadePrecios;
 use App\Models\Tipoproducto;
 use App\Models\Metodopago;
 
