@@ -155,12 +155,14 @@
                             </a>
                         </li>
                         @endcan
+                        @can('vista sucursal')
                         <li>
                             <a href="{{ route('sucursales.index') }}" class="d-flex align-items-center p-2 text-white text-decoration-none">
                                 <i class="fa-solid fa-store"></i>
                                 <span class="ms-2">Sucursales</span>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </li>
             </ul>

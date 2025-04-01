@@ -22,13 +22,17 @@ class ControladorEquipos extends Controller
     public function index(Request $request)
     {
         $empresaId = session('empresa_id');
-
-        $sucursales = Sucursal::all();
+    
+        if (!$empresaId) {
+            abort(403, 'No se ha definido la empresa actual.');
+        }
+    
+        $sucursales = Sucursal::where('id_empresa', $empresaId)->get(); // 🔥 aquí está el ajuste
         $tiposEquipos = TipoProducto::all();
         $tiposVentas = MetodoPago::all();
-
+    
         $equipos = collect();
-
+    
         if (
             $request->filled('id_sucursal') ||
             $request->filled('tipoeq') ||
@@ -37,7 +41,7 @@ class ControladorEquipos extends Controller
             ($request->filled('fecha_inicio') && $request->filled('fecha_fin'))
         ) {
             $query = Equipo::query()->where('id_empresa', $empresaId);
-
+    
             if ($request->filled('id_sucursal')) {
                 $query->where('id_sucursal', $request->id_sucursal);
             }
@@ -55,12 +59,13 @@ class ControladorEquipos extends Controller
                 $fechaFin = Carbon::parse($request->fecha_fin)->endOfDay();
                 $query->whereBetween('created_at', [$fechaInicio, $fechaFin]);
             }
-
+    
             $equipos = $query->get();
         }
-
+    
         return view('equipos.index', compact('sucursales', 'tiposEquipos', 'tiposVentas', 'equipos'));
     }
+    
 
     // GET /equipos/create => equipos.create
     public function create()
