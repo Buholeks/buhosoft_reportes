@@ -28,7 +28,7 @@
             <select style="width: 400px;" class="form-control" name="sucursal_id" id="sucursal" required>
                 <option value="">Seleccione Aquí</option>
                 @foreach($sucursales as $sucursal)
-                <option value="{{ $sucursal->id }}">{{ $sucursal->nombre }}</option>
+                <option value="{{ $sucursal['id'] }}">{{ $sucursal['nombre'] }}</option>
                 @endforeach
             </select>
         </div>
