@@ -21,27 +21,6 @@ class sucursal extends Model
 
     ];
 
-    public function showSelectSucursal(Request $request)
-    {
-        $sucursales = $request->session()->get('sucursales');
-        return view('select_sucursal', compact('sucursales'));
-    }
-
-    public function selectSucursal(Request $request)
-    {
-        $sucursal = Sucursal::find($request->sucursal_id);
-        if (!$sucursal) {
-            return redirect()->back()->with('error', 'Sucursal no válida');
-        }
-
-        session([
-            'sucursal_id' => $sucursal->id,
-            'empresa_id'  => $sucursal->id_empresa
-        ]);
-
-        return redirect()->route('home');
-    }
-
     public function empresa()
     {
         return $this->belongsTo(Empresa::class, 'id_empresa');
