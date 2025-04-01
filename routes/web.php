@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\RegistroControlador;
-use App\Http\Controllers\controladorequipos;
+use App\Http\Controllers\ControladorEquipos;
 use App\Http\Controllers\ControladorChip;
 use App\Http\Controllers\ControladorGarantia;
 use App\Http\Controllers\ControladorSucursal;
