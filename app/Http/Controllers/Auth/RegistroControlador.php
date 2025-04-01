@@ -17,12 +17,19 @@ class RegistroControlador extends Controller
 
     public function register(Request $request)
     {
-        $this->validator($request->all())->validate();
+        try {
+            $this->validator($request->all())->validate();
+    
+            $this->create($request->all());
+    
+            return redirect()->route('login')->with('success', 'Usuario registrado correctamente.');
 
-        $user = $this->create($request->all());
-
-        return redirect()->route('login');
+        } catch (\Exception $e) {
+            Log::error('Error al registrar usuario: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Ocurrió un error al registrar el usuario.');
+        }
     }
+    
 
     protected function validator(array $data)
     {

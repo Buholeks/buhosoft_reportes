@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     @vite([ 'resources/js/app.js','resources/css/login.css'])
+    @include('components.alertas')
+
 </head>
 
 <body>

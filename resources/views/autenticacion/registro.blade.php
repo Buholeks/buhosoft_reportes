@@ -35,8 +35,19 @@
         <label for="password-confirm">Confirmar Contraseña</label>
         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
     </div>
-<p></p>
+    <p></p>
     <div class="col-md-6">
         <button type="submit" class="btn btn-primary">Registrarse</button>
     </div>
+
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Registro exitoso!',
+            text: '{{ session("success") }}'
+        });
+    </script>
+    @endif
+
 </form>
