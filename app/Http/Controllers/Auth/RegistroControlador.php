@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -19,17 +20,19 @@ class RegistroControlador extends Controller
     {
         try {
             $this->validator($request->all())->validate();
-    
-            $this->create($request->all());
-    
-            return redirect()->route('login')->with('success', 'Usuario registrado correctamente.');
 
+            $this->create($request->all());
+
+            return redirect()->route('login')->with([
+                'mensaje' => 'Usuario Registrado con Éxito, Solicita la Activacion con el ADMIN.',
+                'tipo' => 'creado'
+            ]);
         } catch (\Exception $e) {
             Log::error('Error al registrar usuario: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Ocurrió un error al registrar el usuario.');
         }
     }
-    
+
 
     protected function validator(array $data)
     {

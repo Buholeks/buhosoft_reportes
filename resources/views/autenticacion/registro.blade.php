@@ -39,15 +39,4 @@
     <div class="col-md-6">
         <button type="submit" class="btn btn-primary">Registrarse</button>
     </div>
-
-    @if(session('success'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: '¡Registro exitoso!',
-            text: '{{ session("success") }}'
-        });
-    </script>
-    @endif
-
 </form>
