@@ -19,12 +19,12 @@ class ListadePrecios extends Model
 
 
     // Listadeprecios.php
-    public function tipoproducto()
+    public function TipoProducto()
     {
         return $this->belongsTo(TipoProducto::class, 'tipoe');
     }
 
-    public function metodopago()
+    public function MetodoPago()
     {
         return $this->belongsTo(MetodoPago::class, 'tipove');
     }
