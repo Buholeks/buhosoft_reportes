@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'BuhoSoft')</title>
-    @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/buscar.js,resources/css/paginas.css'])
+    @vite(['resources/js/app.js', 'resources/css/app.css', 'resources/js/buscar.js'])
     @include('components.alertas')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -52,7 +52,6 @@
         </a>
     </div>
 </header>
-
 <body>
     <div class="content-wrapper">
         <nav class="sidebar text-white p-3" style="width: 13rem; height: calc(100vh - 5rem); overflow-y: auto;">
