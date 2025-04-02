@@ -108,11 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
         resultsList.style.zIndex = '1050';  // Asegura que esté sobre los demás elementos
         resultsList.style.backgroundColor = 'white'; // Evita transparencia accidental
         resultsList.style.boxShadow = '0px 4px 6px rgba(0,0,0,0.1)'; // Sombras para resaltar
-    
+
     });
-
-
-
-   
 });
 

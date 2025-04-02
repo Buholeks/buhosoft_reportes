@@ -71,4 +71,30 @@ document.querySelectorAll('.btn-eliminar').forEach(boton => {
     });
 });
 
+// script para desactivar boton al hacer click
+document.addEventListener('DOMContentLoaded', function () {
+    let lastClickedButton = null;
+
+    // Detecta el último botón que se clickeó
+    document.querySelectorAll('button[type="submit"]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            lastClickedButton = btn;
+        });
+    });
+
+    // Al enviar cualquier formulario...
+    document.querySelectorAll('form').forEach(function (form) {
+        form.addEventListener('submit', function () {
+            if (lastClickedButton && form.contains(lastClickedButton)) {
+                lastClickedButton.disabled = true;
+
+                if (!lastClickedButton.dataset.originalText) {
+                    lastClickedButton.dataset.originalText = lastClickedButton.innerHTML;
+                }
+
+                lastClickedButton.innerText = 'Espere...';
+            }
+        });
+    });
+});
 
