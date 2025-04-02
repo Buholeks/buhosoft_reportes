@@ -11,6 +11,7 @@ use App\Http\Controllers\ControladorBuscar;
 use App\Http\Controllers\ControladorListadePrecios;
 use App\Http\Controllers\ControladorUsuario;
 use App\Http\Controllers\ControladorRol;
+use App\Http\Controllers\ControladorComision;
 
 Route::middleware(['web'])->group(function () {
     Route::get('/', function () {
@@ -114,3 +115,8 @@ Route::resource('sucursales', ControladorSucursal::class)->parameters([
 
 Route::get('vista_sucursal', [ControladorSucursal::class, 'showSelectSucursal'])->name('vista_sucursal');
 Route::post('vista_sucursal', [ControladorSucursal::class, 'selectSucursal'])->name('vista_sucursal.post');
+
+
+
+
+Route::get('/comisiones', [ControladorComision::class, 'index'])->name('comisiones.index');
